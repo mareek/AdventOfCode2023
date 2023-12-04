@@ -127,6 +127,10 @@ impl PartNumber {
 
 impl Symbol {
     fn get_gear_ratio(&self, part_numbers: &Vec<PartNumber>) -> Option<i32> {
+        if self.symbol == '*' {
+            return None;
+        }
+
         let adjacent_parts: Vec<&PartNumber> = part_numbers
             .iter()
             .filter(|p| p.is_adjacent(self.row, self.col))
