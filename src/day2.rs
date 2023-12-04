@@ -5,7 +5,7 @@ impl crate::day_trait::DaySolver for Day2 {
         return 2;
     }
 
-    fn solve_first_problem(&self, file_content: &str) -> String {
+    fn solve_first_problem(&self, file_content: &str) -> Option<String> {
         let games: Vec<Game> = file_content
             .lines()
             .filter(|l| l.len() > 8)
@@ -18,10 +18,10 @@ impl crate::day_trait::DaySolver for Day2 {
             .filter(|g| g.get_max_red() <= 12 && g.get_max_green() <= 13 && g.get_max_blue() <= 14)
             .map(|g| g.id)
             .sum();
-        return format!("{result}");
+        return Some(format!("{result}"));
     }
 
-    fn solve_second_problem(&self, file_content: &str) -> String {
+    fn solve_second_problem(&self, file_content: &str) -> Option<String> {
         let games: Vec<Game> = file_content
             .lines()
             .filter(|l| l.len() > 8)
@@ -32,7 +32,7 @@ impl crate::day_trait::DaySolver for Day2 {
             .iter()
             .map(|g| g.get_max_red() * g.get_max_green() * g.get_max_blue())
             .sum();
-        return format!("{result}");
+        return Some(format!("{result}"));
     }
 }
 

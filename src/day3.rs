@@ -5,7 +5,7 @@ impl crate::day_trait::DaySolver for Day3 {
         return 3;
     }
 
-    fn solve_first_problem(&self, file_content: &str) -> String {
+    fn solve_first_problem(&self, file_content: &str) -> Option<String> {
         let mut symbols: Vec<Symbol> = Vec::new();
         let mut part_numbers: Vec<PartNumber> = Vec::new();
         parse_engine_schematics(file_content, &mut symbols, &mut part_numbers);
@@ -16,10 +16,10 @@ impl crate::day_trait::DaySolver for Day3 {
             .map(|p| p.number)
             .sum();
 
-        return format!("{result}");
+        return Some(format!("{result}"));
     }
 
-    fn solve_second_problem(&self, file_content: &str) -> String {
+    fn solve_second_problem(&self, file_content: &str) -> Option<String> {
         let mut symbols: Vec<Symbol> = Vec::new();
         let mut part_numbers: Vec<PartNumber> = Vec::new();
         parse_engine_schematics(file_content, &mut symbols, &mut part_numbers);
@@ -32,7 +32,7 @@ impl crate::day_trait::DaySolver for Day3 {
             }
         }
 
-        return format!("{result}");
+        return Some(format!("{result}"));
     }
 }
 
@@ -127,7 +127,7 @@ impl PartNumber {
 
 impl Symbol {
     fn get_gear_ratio(&self, part_numbers: &Vec<PartNumber>) -> Option<i32> {
-        if self.symbol == '*' {
+        if self.symbol != '*' {
             return None;
         }
 

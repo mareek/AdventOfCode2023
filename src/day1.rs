@@ -5,7 +5,7 @@ impl crate::day_trait::DaySolver for Day1 {
         return 1;
     }
 
-    fn solve_first_problem(&self, file_content: &str) -> String {
+    fn solve_first_problem(&self, file_content: &str) -> Option<String> {
         let mut sum = 0;
         for line in file_content.lines() {
             let mut has_digit = false;
@@ -21,15 +21,15 @@ impl crate::day_trait::DaySolver for Day1 {
 
             if has_digit {
                 let str_value: String = [first_digit, last_digit].iter().collect();
-                let value: i32 = str_value.parse::<i32>().unwrap();
+                let value: i32 = str_value.parse::<i32>().ok()?;
                 sum += value;
             }
         }
 
-        return format!("{sum}");
+        return Some(format!("{sum}"));
     }
 
-    fn solve_second_problem(&self, file_content: &str) -> String {
+    fn solve_second_problem(&self, file_content: &str) -> Option<String> {
         let literals = [
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
         ];
@@ -79,11 +79,11 @@ impl crate::day_trait::DaySolver for Day1 {
 
             if has_digit {
                 let str_value: String = [first_digit, last_digit].iter().collect();
-                let value: i32 = str_value.parse::<i32>().unwrap();
+                let value: i32 = str_value.parse::<i32>().ok()?;
                 sum += value;
             }
         }
 
-        return format!("{sum}");
+        return Some(format!("{sum}"));
     }
 }
