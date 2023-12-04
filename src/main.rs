@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 mod day_trait;
 mod file_utils;
 
@@ -10,6 +11,7 @@ fn main() {
     day1::Day1.solve_problem();
     day2::Day2.solve_problem();
     day3::Day3.solve_problem();
+    day4::Day4.solve_problem();
 
-    day3::Day3.test_problem("testInput.txt");
+    day4::Day4.test_problem("testInput.txt");
 }
