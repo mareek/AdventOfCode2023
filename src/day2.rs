@@ -28,7 +28,10 @@ impl crate::day_trait::DaySolver for Day2 {
             .map(parse_game_line)
             .collect();
 
-        let result:i32 = games.iter().map(|g|g.get_max_red() * g.get_max_green() * g.get_max_blue()).sum();
+        let result: i32 = games
+            .iter()
+            .map(|g| g.get_max_red() * g.get_max_green() * g.get_max_blue())
+            .sum();
         return format!("{result}");
     }
 }
@@ -55,6 +58,7 @@ impl Game {
         return self.draws.iter().map(|d| d.blue_count).max().unwrap();
     }
 }
+
 fn parse_game_line(line: &str) -> Game {
     //Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
     let split = &mut line.split(':');
