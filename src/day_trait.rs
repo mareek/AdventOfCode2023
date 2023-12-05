@@ -20,9 +20,9 @@ pub trait DaySolver {
         println!("Day {day} : {day_first_solution}, {day_second_solution}");
     }
 
-    fn test_problem(&self, test_file: &str) {
+    fn solve_problem_on_file(&self, input_file: &str) {
         let day = self.day_of_month();
-        let read_input_file = file_utils::read_day_file(day, test_file);
+        let read_input_file = file_utils::read_day_file(day, input_file);
 
         let day_first_solution = self
             .solve_first_problem(read_input_file.as_str())
@@ -32,6 +32,6 @@ pub trait DaySolver {
             .solve_second_problem(read_input_file.as_str())
             .unwrap_or_else(|| String::from("No Solution yet"));
 
-        println!("Test Day {day} with {test_file} : {day_first_solution}, {day_second_solution}");
+        println!("Day {day} with {input_file} : {day_first_solution}, {day_second_solution}");
     }
 }
