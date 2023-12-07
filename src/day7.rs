@@ -1,4 +1,4 @@
-use std::{cmp::*, fmt::format};
+use std::cmp::*;
 
 pub struct Day7;
 
