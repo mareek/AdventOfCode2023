@@ -19,7 +19,6 @@ impl crate::day_trait::DaySolver for Day9 {
         let mut result = 0;
         for measures in measures_collection {
             let value = extrapolate_backward(&measures);
-            //print!()
             result += value;
         }
         return Some(format!("{result}"));
@@ -62,12 +61,4 @@ fn extrapolate_backward(values: &Vec<i64>) -> i64 {
         let derived_values = derive(values);
         return values.first().unwrap() - extrapolate_backward(&derived_values);
     }
-}
-
-fn derive_backward(values: &Vec<i64>) -> Vec<i64> {
-    let mut result = Vec::new();
-    for i in 1..values.len() {
-        result.push(values[i-1] - values[i]);
-    }
-    return result;
 }
