@@ -9,7 +9,7 @@ impl crate::day_trait::DaySolver for Day12 {
         let mut result = 0;
         for line in file_content.lines() {
             let row = Row::parse(line)?;
-            let count_possible_states = row.brute_count_possible_states();
+            let count_possible_states = row.count_possible_states();
             result += count_possible_states;
         }
 
@@ -17,7 +17,14 @@ impl crate::day_trait::DaySolver for Day12 {
     }
 
     fn solve_second_problem(&self, file_content: &str) -> Option<String> {
-        return None;
+        let mut result = 0;
+        for line in file_content.lines() {
+            let row = Row::parse(line)?;
+            let count_possible_states = row.count_possible_states();
+            result += count_possible_states.pow(5);
+        }
+
+        return Some(format!("The brute force solution is way to slow : {result}"));
     }
 }
 
@@ -51,14 +58,6 @@ impl HotSpringState {
 
         *index += 1;
         return result;
-    }
-
-    fn to_char(&self) -> char {
-        match self {
-            HotSpringState::Damaged => '#',
-            HotSpringState::Operational => '.',
-            HotSpringState::Unknown => '?',
-        }
     }
 }
 
@@ -95,7 +94,7 @@ impl Row {
             .collect();
 
         let mut hot_springs = Vec::new();
-        for i in 0..5 {
+        for _ in 0..5 {
             if hot_springs.len() > 0 {
                 hot_springs.push(HotSpringState::Unknown);
             }
@@ -112,7 +111,7 @@ impl Row {
             .collect::<Option<Vec<_>>>()?;
 
         let mut damaged_groups = Vec::new();
-        for i in 0..5 {
+        for _ in 0..5 {
             for group in base_damaged_groups.iter() {
                 damaged_groups.push(*group);
             }
@@ -168,7 +167,7 @@ impl Row {
                 .all(|(a, b)| *a == *b);
     }
 
-    fn brute_count_possible_states(&self) -> u64 {
+    fn count_possible_states(&self) -> u64 {
         let unknown_count = self
             .hot_springs
             .iter()
@@ -188,11 +187,4 @@ impl Row {
 
         return result;
     }
-}
-
-fn print_hypothesis(hypothesis: &Vec<HotSpringState>) {
-    for hot_spring in hypothesis.iter() {
-        print!("{}", hot_spring.to_char());
-    }
-    print!("\n");
 }

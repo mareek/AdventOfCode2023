@@ -27,7 +27,7 @@ fn main() {
     day9::Day9.solve_problem();
     day10::Day10.solve_problem();
     day11::Day11.solve_problem_on_file("testInput.txt");
-    day12::Day12.solve_problem();
+    day12::Day12.solve_problem_on_file("testInput.txt");
     
     day12::Day12.solve_problem_on_file("testInput.txt");
 }
