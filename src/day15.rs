@@ -38,9 +38,10 @@ impl crate::day_trait::DaySolver for Day15 {
             }
         }
 
-        /* One plus the box number of the lens in question.
-        The slot number of the lens within the box: 1 for the first lens, 2 for the second lens, and so on.
-        The focal length of the lens.*/
+        /* The focusing power of a single lens is the result of multiplying together:
+           - One plus the box number of the lens in question.
+           - The slot number of the lens within the box: 1 for the first lens, 2 for the second lens, and so on.
+           - The focal length of the lens.*/
         let mut result: u32 = 0;
         for i in 0..boxes.len() {
             let boite = &boxes[i];

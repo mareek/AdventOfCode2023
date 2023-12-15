@@ -1,4 +1,5 @@
 use crate::file_utils;
+use std::time::Instant;
 
 pub trait DaySolver {
     fn day_of_month(&self) -> i32;
@@ -7,31 +8,35 @@ pub trait DaySolver {
 
     fn solve_problem(&self) {
         let day = self.day_of_month();
-        let read_input_file = file_utils::read_input_file(day);
+        let file_content = file_utils::read_input_file(day);
 
-        let day_first_solution = self
-            .solve_first_problem(read_input_file.as_str())
-            .unwrap_or_else(|| String::from("No Solution yet"));
-
-        let day_second_solution = self
-            .solve_second_problem(read_input_file.as_str())
-            .unwrap_or_else(|| String::from("No Solution yet"));
-
-        println!("Day {day} : {day_first_solution}, {day_second_solution}");
+        self.solve_problems(file_content.as_str(), "");
     }
 
     fn solve_problem_on_file(&self, input_file: &str) {
         let day = self.day_of_month();
-        let read_input_file = file_utils::read_day_file(day, input_file);
+        let file_content = file_utils::read_day_file(day, input_file);
 
-        let day_first_solution = self
-            .solve_first_problem(read_input_file.as_str())
+        self.solve_problems(
+            file_content.as_str(),
+            format!(" with {input_file}").as_str(),
+        );
+    }
+
+    fn solve_problems(&self, file_content: &str, display_context: &str) {
+        let day = self.day_of_month();
+        let first_start = Instant::now();
+        let first_solution = self
+            .solve_first_problem(file_content)
             .unwrap_or_else(|| String::from("No Solution yet"));
+        let first_duration = first_start.elapsed();
 
-        let day_second_solution = self
-            .solve_second_problem(read_input_file.as_str())
+        let second_start = Instant::now();
+        let second_solution = self
+            .solve_second_problem(file_content)
             .unwrap_or_else(|| String::from("No Solution yet"));
+        let second_duration = second_start.elapsed();
 
-        println!("Day {day} with {input_file} : {day_first_solution}, {day_second_solution}");
+        println!("Day {day}{display_context} : {first_solution}\t ({first_duration:.2?}),\t {second_solution}\t ({second_duration:.1?})");
     }
 }

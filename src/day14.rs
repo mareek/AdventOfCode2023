@@ -35,7 +35,6 @@ impl crate::day_trait::DaySolver for Day14 {
             None => return None,
             Some((offset, cycle_len)) => {
                 platform = original_platform.clone();
-                println!("offset : {offset}, cycle: {cycle_len}");
                 let cycle_count = (1_000_000_000 - offset) % cycle_len;
                 for _ in 0..(offset+cycle_count) {
                     platform.cycle();
