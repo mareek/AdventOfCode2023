@@ -13,6 +13,7 @@ mod day12;
 mod day13;
 mod day14;
 mod day15;
+mod day16;
 mod day_trait;
 mod file_utils;
 
@@ -34,6 +35,7 @@ fn main() {
     day13::Day13.solve_problem();
     day14::Day14.solve_problem_on_file("testInput.txt");
     day15::Day15.solve_problem();
+    day16::Day16.solve_problem();
     
-    day15::Day15.solve_problem_on_file("testInput.txt");
+    day16::Day16.solve_problem_on_file("testInput.txt");
 }

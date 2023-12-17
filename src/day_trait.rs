@@ -19,7 +19,7 @@ pub trait DaySolver {
 
         self.solve_problems(
             file_content.as_str(),
-            format!(" with {input_file}").as_str(),
+            format!("with {input_file}").as_str(),
         );
     }
 
@@ -37,6 +37,6 @@ pub trait DaySolver {
             .unwrap_or_else(|| String::from("No Solution yet"));
         let second_duration = second_start.elapsed();
 
-        println!("Day {day}{display_context} : {first_solution}\t ({first_duration:.2?}),\t {second_solution}\t ({second_duration:.1?})");
+        println!("Day {day}\t: {first_solution}\t ({first_duration:.2?}),\t {second_solution}\t ({second_duration:.1?}) {display_context}");
     }
 }
