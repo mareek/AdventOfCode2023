@@ -16,15 +16,9 @@ impl crate::day_trait::DaySolver for Day12 {
         return Some(format!("{result}"));
     }
 
+    #[allow(unused_variables)]
     fn solve_second_problem(&self, file_content: &str) -> Option<String> {
-        let mut result = 0;
-        for line in file_content.lines() {
-            let row = Row::parse(line)?;
-            let count_possible_states = row.count_possible_states();
-            result += count_possible_states.pow(5);
-        }
-
-        return Some(format!("The brute force solution is way to slow : {result}"));
+        return None;
     }
 }
 
